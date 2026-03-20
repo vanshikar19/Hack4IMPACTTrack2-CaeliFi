@@ -1,14 +1,37 @@
 const express = require('express');
 const cors = require('cors');
+const dotenv = require("dotenv");
+const { connectToDatabase } = require("./config/db");
+const mainRouter = require("./routes/mainRouter");
+
+dotenv.config();
 
 const app = express();
 
-app.use(cors());
+const corsOrigin = process.env.CORS_ORIGIN || "*";
+
+app.use(cors({ origin: corsOrigin }));
 app.use(express.json());
 
-app.get('/', (req, res) => res.json({ message: 'CaeliFi API running' }));
+app.get('/', (_req, res) =>
+  res.json({
+    message: 'CaeliFi API running',
+    status: 'ok',
+  })
+);
+
+app.use('/api', mainRouter);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log('Server running on port ' + PORT);
+
+const startServer = async () => {
+  await connectToDatabase();
+  app.listen(PORT, () => {
+    console.log('Server running on port ' + PORT);
+  });
+};
+
+startServer().catch((error) => {
+  console.error('Failed to start server:', error.message);
+  process.exit(1);
 });

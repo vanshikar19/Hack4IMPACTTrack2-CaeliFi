@@ -19,6 +19,9 @@ const Navbar = () => (<motion.nav initial={{ y: -20, opacity: 0 }} animate={{ y:
         <Link href="/dashboard" className="text-sm text-muted-foreground hover:text-foreground transition-colors hidden sm:block">
           Dashboard
         </Link>
+        <Link href="/admin" className="text-sm text-muted-foreground hover:text-foreground transition-colors hidden sm:block">
+          Admin
+        </Link>
         <a href="#contact" className="px-5 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:brightness-110 transition-all active:scale-[0.97]">
           Request Demo
         </a>

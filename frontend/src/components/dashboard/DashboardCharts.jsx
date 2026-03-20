@@ -1,15 +1,17 @@
 import { motion } from "framer-motion";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
-const lineData = [
-    { time: "6AM", solar: 5, dg: 40, load: 45 },
-    { time: "8AM", solar: 20, dg: 30, load: 50 },
-    { time: "10AM", solar: 38, dg: 15, load: 53 },
-    { time: "12PM", solar: 48, dg: 10, load: 55 },
-    { time: "2PM", solar: 45, dg: 12, load: 57 },
-    { time: "4PM", solar: 30, dg: 25, load: 54 },
-    { time: "6PM", solar: 10, dg: 40, load: 50 },
-];
-const barData = [
+const DashboardCharts = ({ histories }) => {
+  const lineData = histories?.power ?? [
+    { time: "06:00", solar: 5, dg: 40, load: 45 },
+    { time: "08:00", solar: 20, dg: 30, load: 50 },
+    { time: "10:00", solar: 38, dg: 15, load: 53 },
+    { time: "12:00", solar: 48, dg: 10, load: 55 },
+    { time: "14:00", solar: 45, dg: 12, load: 57 },
+    { time: "16:00", solar: 30, dg: 25, load: 54 },
+    { time: "18:00", solar: 10, dg: 40, load: 50 },
+  ];
+
+  const barData = histories?.savings ?? [
     { day: "Mon", savings: 3800 },
     { day: "Tue", savings: 4200 },
     { day: "Wed", savings: 3600 },
@@ -17,8 +19,9 @@ const barData = [
     { day: "Fri", savings: 5100 },
     { day: "Sat", savings: 2900 },
     { day: "Sun", savings: 1500 },
-];
-const DashboardCharts = () => (<div className="grid lg:grid-cols-2 gap-4">
+  ];
+
+  return (<div className="grid lg:grid-cols-2 gap-4">
     <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className="glass rounded-xl p-6">
       <h3 className="text-sm font-semibold text-foreground mb-4">Solar vs DG vs Load</h3>
       <div className="h-64">
@@ -51,4 +54,5 @@ const DashboardCharts = () => (<div className="grid lg:grid-cols-2 gap-4">
       </div>
     </motion.div>
   </div>);
+};
 export default DashboardCharts;
