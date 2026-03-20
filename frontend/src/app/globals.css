@@ -1,26 +1,101 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 4%;
+    --foreground: 45 100% 95%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 45 100% 95%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 45 100% 95%;
+
+    --primary: 50 100% 52%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 45 100% 95%;
+
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 190 100% 50%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 50 100% 52%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 75%;
+    --sidebar-primary: 50 100% 52%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 0 0% 14%;
+    --sidebar-ring: 50 100% 52%;
+
+    /* Custom tokens */
+    --solar-yellow: 50 100% 52%;
+    --electric-blue: 190 100% 50%;
+    --deep-black: 0 0% 4%;
+    --success: 142 71% 45%;
+    --warning: 38 92% 50%;
+    --danger: 0 84% 60%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+  .glass-strong {
+    @apply bg-white/10 backdrop-blur-2xl border border-white/15;
+  }
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3), 0 0 60px hsl(var(--primary) / 0.1);
+  }
+  .glow-accent {
+    box-shadow: 0 0 20px hsl(var(--electric-blue) / 0.3), 0 0 60px hsl(var(--electric-blue) / 0.1);
+  }
+  .glow-success {
+    box-shadow: 0 0 20px hsl(var(--success) / 0.3);
+  }
+  .glow-danger {
+    box-shadow: 0 0 20px hsl(var(--danger) / 0.4);
+  }
+  .text-gradient-solar {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(38 100% 60%));
+  }
+  .text-gradient-accent {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--electric-blue)), hsl(210 100% 60%));
+  }
+  .solar-glow-bg {
+    background: radial-gradient(ellipse at 50% 0%, hsl(40 100% 50% / 0.12) 0%, hsl(var(--deep-black)) 70%);
+  }
+  .solar-glow-bg-strong {
+    background: radial-gradient(ellipse at 50% -20%, hsl(40 100% 50% / 0.2) 0%, hsl(30 100% 40% / 0.08) 40%, hsl(var(--deep-black)) 80%);
+  }
 }
