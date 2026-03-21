@@ -25,7 +25,7 @@ const Footer = () => (<footer id="contact" className="py-16 border-t border-bord
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li>hello@caelifi.com</li>
             <li>+91 98765 43210</li>
-            <li>Pune, Maharashtra, India</li>
+            <li>Bhubaneswar, Odisha, India</li>
           </ul>
         </div>
       </div>
