@@ -17,7 +17,6 @@ const Index = () => (<div className="relative">
     <ScenariosSection />
     <SavingsCalculator />
     <ProductSection />
-    <PricingSection />
     <Footer />
   </div>);
 export default Index;

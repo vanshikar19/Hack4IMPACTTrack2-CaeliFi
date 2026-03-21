@@ -9,19 +9,15 @@ const Navbar = () => (<motion.nav initial={{ y: -20, opacity: 0 }} animate={{ y:
           Caeli<span className="text-primary">Fi</span>
         </span>
       </Link>
-      <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
+      <div className="hidden md:flex items-center justify-center  gap-8 text-sm text-muted-foreground">
         <a href="#problem" className="hover:text-foreground transition-colors">Solution</a>
         <a href="#scenarios" className="hover:text-foreground transition-colors">How It Works</a>
         <a href="#calculator" className="hover:text-foreground transition-colors">Savings</a>
-        <a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a>
       </div>
       <div className="flex items-center gap-3">
-        <Link href="/dashboard" className="text-sm text-muted-foreground hover:text-foreground transition-colors hidden sm:block">
+        <Link href="/dashboard" className="px-5 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:brightness-110 transition-all active:scale-[0.97]">
           Dashboard
         </Link>
-        <a href="#contact" className="px-5 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:brightness-110 transition-all active:scale-[0.97]">
-          Request Demo
-        </a>
       </div>
     </div>
   </motion.nav>);
