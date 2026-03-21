@@ -38,12 +38,7 @@ const DashboardControls = ({ controls, onUpdateControls }) => {
           </div>
           <input type="range" min={0} max={100} value={solarLimit} onChange={(e) => handleSolarLimitChange(+e.target.value)} className="w-full accent-primary"/>
         </div>
-        <div className="flex items-center justify-between">
-          <span className="text-sm text-muted-foreground">DG Sync Mode</span>
-          <button onClick={handleDgSyncToggle} className={`relative w-12 h-6 rounded-full transition-colors ${dgSync ? "bg-success" : "bg-muted"}`}>
-            <motion.div className="absolute top-0.5 w-5 h-5 rounded-full bg-foreground" animate={{ left: dgSync ? 26 : 2 }} transition={{ type: "spring", stiffness: 500, damping: 30 }}/>
-          </button>
-        </div>
+
       </div>
     </motion.div>);
 };

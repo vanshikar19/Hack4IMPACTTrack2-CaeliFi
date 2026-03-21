@@ -161,16 +161,42 @@ const addTelemetry = async (payload) => {
   const now = new Date();
   const elapsedHours = Math.max((now - new Date(doc.lastTelemetryAt)) / (1000 * 60 * 60), 0);
 
-  doc.metrics.solarOutputKw = numberOrFallback(payload.solarOutputKw, doc.metrics.solarOutputKw);
-  doc.metrics.dgOutputKw = numberOrFallback(payload.dgOutputKw, doc.metrics.dgOutputKw);
-  doc.metrics.loadDemandKw = numberOrFallback(payload.loadDemandKw, doc.metrics.loadDemandKw);
+  const hasSolarOutputKw = payload.solarOutputKw !== undefined;
+  const hasLegacySolar = payload.actual_watts !== undefined;
+  if (hasSolarOutputKw || hasLegacySolar) {
+    doc.metrics.solarOutputKw = numberOrFallback(
+      hasSolarOutputKw ? payload.solarOutputKw : payload.actual_watts,
+      doc.metrics.solarOutputKw
+    );
+  }
+
+  const hasDgOutputKw = payload.dgOutputKw !== undefined;
+  const hasLegacyDgStatus = payload.dg_status !== undefined;
+  if (hasDgOutputKw || hasLegacyDgStatus) {
+    doc.metrics.dgOutputKw = numberOrFallback(
+      hasDgOutputKw ? payload.dgOutputKw : (Boolean(payload.dg_status) ? doc.metrics.dgOutputKw : 0),
+      doc.metrics.dgOutputKw
+    );
+  }
+
+  const hasLoadDemandKw = payload.loadDemandKw !== undefined;
+  const hasLegacyFactoryLoad = payload.factory_load !== undefined;
+  if (hasLoadDemandKw || hasLegacyFactoryLoad) {
+    doc.metrics.loadDemandKw = numberOrFallback(
+      hasLoadDemandKw ? payload.loadDemandKw : payload.factory_load,
+      doc.metrics.loadDemandKw
+    );
+  }
 
   if (payload.throttlePercent !== undefined) {
     doc.metrics.throttlePercent = clamp(numberOrFallback(payload.throttlePercent, doc.metrics.throttlePercent), 0, 100);
   }
 
-  if (payload.safeMode !== undefined) {
+  if (payload.safeMode !== undefined || payload.mode !== undefined) {
     doc.metrics.safeMode = Boolean(payload.safeMode);
+    if (payload.safeMode === undefined) {
+      doc.metrics.safeMode = String(payload.mode).toLowerCase().includes("safe");
+    }
   }
 
   if (payload.solarLimitPercent !== undefined) {

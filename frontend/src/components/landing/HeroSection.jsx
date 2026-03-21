@@ -27,10 +27,6 @@ const HeroSection = () => (<section className="relative min-h-screen flex items-
         </motion.p>
 
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="#contact" className="group flex items-center gap-2 px-8 py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold text-base glow-primary hover:brightness-110 transition-all active:scale-[0.97]">
-            Request Demo
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1"/>
-          </a>
           <Link href="/dashboard" className="group flex items-center gap-2 px-8 py-3.5 rounded-xl glass text-foreground font-medium text-base hover:bg-white/10 transition-all active:scale-[0.97]">
             <Play className="w-4 h-4"/>
             View Dashboard

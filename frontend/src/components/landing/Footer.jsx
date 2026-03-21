@@ -27,9 +27,6 @@ const Footer = () => (<footer id="contact" className="py-16 border-t border-bord
             <li>+91 98765 43210</li>
             <li>Pune, Maharashtra, India</li>
           </ul>
-          <a href="mailto:hello@caelifi.com" className="inline-block mt-4 px-5 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:brightness-110 transition-all active:scale-[0.97]">
-            Request Demo
-          </a>
         </div>
       </div>
       <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
